@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const path = require('path');
 const app = express();
 
 app.use(bodyParser.json());
@@ -41,6 +41,7 @@ app.post('/todos', (req, res) => {
     title: req.body.title,
     description: req.body.description
   };
+  console.log(newTodo);
   todos.push(newTodo);
   res.status(201).json(newTodo);
 });
@@ -66,9 +67,13 @@ app.delete('/todos/:id', (req, res) => {
   }
 });
 
+app.get("/",(req, res) =>{
+  res.sendFile(path.join(__dirname,"index.html"))
+})
 // for all other routes, return 404
-app.use((req, res, next) => {
-  res.status(404).send();
-});
+// app.use((req, res, next) => {
+//   res.status(404).send();
+// });
 
-module.exports = app;
+// module.exports = app;
+app.listen(3000);

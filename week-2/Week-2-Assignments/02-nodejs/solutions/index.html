@@ -5,11 +5,12 @@
 </head>
 <script>
 
-    function deleteDone() {
+    function deleteDone(res) {
         console.log("done delete");
         // Delete the right todo from the list
         // You will need to give each todo an id, and that should be enough to remove it
-
+        // console.log('req',req);
+        console.log('res',res);
     }
     function deleteTodo(id) {
         fetch("http://localhost:3000/todos/" + id, {
